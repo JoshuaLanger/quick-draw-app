@@ -5,17 +5,11 @@ import Layout from '../styled-components/LayoutStyle';
 import Button from '../styled-components/ButtonStyle';
 import Title from '../styled-components/TitleStyle';
 
-const StartGameBtn = Button.extend`
-  background: #E5B85C;
-  margin: 0 auto;
-  box-shadow: 0 4px 4px rgba(0,0,0,0.3);
-`;
-
 const StartGame = props => {
   return (
     <Layout>
       <Title>
-        <h1 style={{ fontFamily: 'Rye' }}>Quick Draw!</h1>
+          <h1 style={{ fontFamily: 'Rye' }}>Quick Draw!</h1>
       </Title>
       <p>
         In this game, you'll be facing off against <strong>Bill Boxford</strong>
@@ -32,7 +26,9 @@ const StartGame = props => {
         you can!
       </p>
       <p>If you wait too long, Bill will shoot and you'll lose</p>
-      <StartGameBtn onClick={props.handleClick}>Start Game</StartGameBtn>
+      <Button onClick={props.handleClick}>
+        Start Game
+      </Button>
     </Layout>
   );
 };

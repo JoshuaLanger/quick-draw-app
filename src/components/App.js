@@ -35,7 +35,8 @@ class App extends Component {
   }
 
   checkSpaceKey = e => {
-    if (!this.state.startGame && !this.state.gameOver && e.keyCode === 32) this.updateScore();
+    if (!this.state.startGame && !this.state.gameOver && e.keyCode === 32)
+      this.updateScore();
   };
 
   newRound = () => {
@@ -72,21 +73,27 @@ class App extends Component {
   };
 
   updateScore = () => {
-    if (this.state.gunmanState === 'ready') {
-      clearTimeout(gunmanReadyFlag);
-      this.setState(prevState => ({
-        score: prevState.score + 1,
-        gunmanState: 'shot',
-        message: 'Nice shot!'
-      }));
-      setTimeout(this.newRound, 3000);
-    } else {
-      clearTimeout(roundFlag);
-      this.setState(prevState => ({
-        message: 'Ya shot too soon pardner! Game over',
-        gameOver: true
-      }));
-      return null;
+    switch (this.state.gunmanState) {
+      case 'idle':
+        clearTimeout(gunmanReadyFlag);
+        clearTimeout(roundFlag);
+        this.setState(prevState => ({
+          message: 'Ya shot too soon pardner! Game over',
+          gameOver: true
+        }));
+        break;
+      case 'ready':
+        clearTimeout(gunmanReadyFlag);
+        this.setState(prevState => ({
+          score: prevState.score + 1,
+          gunmanState: 'shot',
+          message: 'Nice shot!'
+        }));
+        setTimeout(this.newRound, 3000);
+        break;
+      case 'shot':
+      default:
+        return null;
     }
   };
 
@@ -95,13 +102,7 @@ class App extends Component {
 
     return (
       <Layout onKeyPress={this.checkSpaceKey}>
-        {startGame && (
-          <StartGame
-            handleClick={this.newGame}
-            message={message}
-            score={score}
-          />
-        )}
+        {startGame && <StartGame handleClick={this.newGame} />}
         {gameOver && (
           <GameOver
             handleClick={this.newGame}
@@ -113,7 +114,7 @@ class App extends Component {
           <h1 style={{ fontFamily: 'Rye' }}>Quick Draw!</h1>
           <h1>Score: {score}</h1>
         </Title>
-        <h2>{message}</h2>
+        <h1>{message}</h1>
         <Gunman
           state={gunmanState}
           handleScore={this.updateScore}
