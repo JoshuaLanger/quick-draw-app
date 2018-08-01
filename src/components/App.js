@@ -26,6 +26,18 @@ class App extends Component {
     this.newRound();
   };
 
+  componentDidMount() {
+    document.addEventListener('keydown', this.checkSpaceKey, false);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('keydown', this.checkSpaceKey, false);
+  }
+
+  checkSpaceKey = e => {
+    if (!this.state.startGame && !this.state.gameOver && e.keyCode === 32) this.updateScore();
+  };
+
   newRound = () => {
     this.setState(prevState => ({
       startGame: false,
@@ -82,7 +94,7 @@ class App extends Component {
     const { score, gunmanState, startGame, gameOver, message } = this.state;
 
     return (
-      <Layout>
+      <Layout onKeyPress={this.checkSpaceKey}>
         {startGame && (
           <StartGame
             handleClick={this.newGame}
@@ -102,7 +114,11 @@ class App extends Component {
           <h1>Score: {score}</h1>
         </Title>
         <h2>{message}</h2>
-        <Gunman state={gunmanState} handleScore={this.updateScore} />
+        <Gunman
+          state={gunmanState}
+          handleScore={this.updateScore}
+          handleKey={this.checkSpaceKey}
+        />
       </Layout>
     );
   }

@@ -17,7 +17,6 @@ const StartGame = props => {
       <Title>
         <h1 style={{ fontFamily: 'Rye' }}>Quick Draw!</h1>
       </Title>
-      <h1>Welcome!</h1>
       <p>
         In this game, you'll be facing off against <strong>Bill Boxford</strong>
       </p>
