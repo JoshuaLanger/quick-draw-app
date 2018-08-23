@@ -19,16 +19,16 @@ const Gunman = props => {
   let color;
   switch (props.state) {
     case 'idle':
-      color = 'blue';
+      color = '#2C779C';
       break;
     case 'ready':
-      color = 'green';
+      color = '#2CB45A';
       break;
     case 'shot':
-      color = 'red';
+      color = '#F65A3D';
       break;
     default:
-      color = 'yellow';
+      color = '#F1B53D';
       break;
   }
 
