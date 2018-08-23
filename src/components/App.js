@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import StartGame from './StartGame';
 import GameOver from './GameOver';
+import Header from './Header';
 import Gunman from './Gunman';
 
 import Title from '../styled-components/TitleStyle';
@@ -110,10 +111,7 @@ class App extends Component {
             score={score}
           />
         )}
-        <Title>
-          <h1 style={{ fontFamily: 'Rye' }}>Quick Draw!</h1>
-          <h1>Score: {score}</h1>
-        </Title>
+        <Header score={score} />
         <h1>{message}</h1>
         <Gunman
           state={gunmanState}
