@@ -5,7 +5,6 @@ import GameOver from './GameOver';
 import Header from './Header';
 import Gunman from './Gunman';
 
-import Title from '../styled-components/TitleStyle';
 import Layout from '../styled-components/LayoutStyle';
 
 let roundFlag;

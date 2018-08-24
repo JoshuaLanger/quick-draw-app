@@ -20,7 +20,8 @@ class Header extends Component {
     return (
       <TitleStyle>
         <h1 style={{ fontFamily: 'Rye' }}>Quick Draw!</h1>
-        <h1>Score: {score}</h1>
+        <h2>Score: {score}</h2>
+        <h2>Time: 0:00</h2>
       </TitleStyle>
     );
   }
