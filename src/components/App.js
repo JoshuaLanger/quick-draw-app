@@ -47,7 +47,7 @@ class App extends Component {
       gunmanState: 'idle',
       message: 'Ready...'
     }));
-    // randomize time between 5 seconds and now
+    // Randomize time between 5 seconds and now
     let time = Math.random() * 5000;
     roundFlag = setTimeout(this.gunmanReady, time);
   };
