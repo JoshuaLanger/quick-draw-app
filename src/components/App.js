@@ -6,6 +6,7 @@ import Header from './Header';
 import Gunman from './Gunman';
 
 import Layout from '../styled-components/LayoutStyle';
+// import Button from '../styled-components/ButtonStyle';
 
 let roundFlag;
 let gunmanReadyFlag;

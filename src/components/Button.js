@@ -1,3 +1,4 @@
+import React, { Component } from 'react';
 import styled from 'styled-components';
 import woodTexture from '../assets/wood-texture.svg';
 
@@ -22,4 +23,11 @@ const ButtonStyle = styled.button`
   }
 `;
 
-export default ButtonStyle;
+class Button extends Component {
+  render() {
+    const { message } = this.props;
+    return <ButtonStyle>{message}</ButtonStyle>;
+  }
+}
+
+export default Button;

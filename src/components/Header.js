@@ -21,7 +21,7 @@ class Header extends Component {
       <TitleStyle>
         <h1 style={{ fontFamily: 'Rye' }}>Quick Draw!</h1>
         <h2>Score: {score}</h2>
-        <h2>Time: 0:00</h2>
+        {/* TODO: add timer */}
       </TitleStyle>
     );
   }
