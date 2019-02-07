@@ -20,7 +20,7 @@ const Content = styled.div`
   align-items: center;
 
   @media screen and (min-width: 640px) {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: ${props => (props.solo ? '1fr' : '1fr 1fr')};
     grid-column-gap: 8rem;
     grid-template-rows: 1fr;
   }
@@ -38,9 +38,10 @@ class Header extends Component {
     const { score, time, isStartGame, isGameOver } = this.props;
     return (
       <StyledHeader>
-        <Content>
+        {/* set "solo = true" to have Title appear in the center when the Info box is gone during the game */}
+        <Content solo={isStartGame || isGameOver}>
           <Title>Quick Draw!</Title>
-          {isStartGame && (
+          {!(isStartGame || isGameOver) && (
             <Info>
               <Heading4>Score: {score}</Heading4>
               <Heading4>Time: {time}</Heading4>
