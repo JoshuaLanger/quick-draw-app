@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
@@ -6,7 +6,7 @@ const StyledTarget = styled.div`
   margin: 0 auto;
   height: 16rem;
   width: 16rem;
-  background-color: ${props => props.theme.colors['blue']};
+  background: ${props => props.theme.colors['blue']};
   transform: rotate(45deg);
   box-shadow: 0.5rem 0.5rem 2rem rgba(0, 0, 0, 0.4);
 
@@ -18,12 +18,7 @@ const StyledTarget = styled.div`
 
 class Target extends Component {
   render() {
-    return (
-      <StyledTarget
-        onMouseDown={props.handleScore}
-        style={{ background: color }}
-      />
-    );
+    return <StyledTarget onMouseDown={props.handleScore} />;
   }
 }
 
