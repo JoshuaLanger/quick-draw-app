@@ -2,46 +2,61 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import woodTexture from '../assets/wood-texture.svg';
 
-const HeaderStyle = styled.header`
-  /* Mobile-first */
-  padding: 0.625rem 3.75rem;
-  background: #e5b85c url(${woodTexture});
-  box-shadow: 0 0.25rem 0.25rem rgba(0, 0, 0, 0.3);
+const StyledHeader = styled.header`
+  width: 100%;
+  padding: 2rem;
+  background: ${props => props.theme.colors['oak-3']};
+  box-shadow: var(--shadow);
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: center;
 
-  @media (min-width: 640px) {
-    padding: 0.625rem 20%;
-    flex-direction: row;
-    justify-content: space-between;
+  @media screen and (min-width: 40em) {
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 8rem;
+    grid-template-rows: 1fr;
   }
 `;
 
-const Brand = styled.h1`
-  width: 240px;
-  font-size: 2.25rem;
-  font-family: 'Rye', sans-serif;
+const Content = styled.div`
+  width: max-content;
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: repeat(auto-fit, 1fr);
+  align-items: center;
+`;
+
+const Title = styled.h1`
+  font-size: 4rem;
+  font-weight: 500;
+  font-family: ${props => props.theme.fontFamily['title']};
+  text-align: center;
 `;
 
 const Info = styled.div`
-  width: 240px;
-  font-weight: normal;
-  display: flex;
-  justify-content: space-between;
+  justify-self: center;
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-column-gap: 2rem;
+`;
+
+const Heading4 = styled.h4`
+  font-size: 2.4rem;
+  font-family: ${props => props.theme.fontFamily['head']};
 `;
 
 class Header extends Component {
   render() {
-    const { score } = this.props;
+    const { score, time, isStartGame, isGameOver } = this.props;
     return (
-      <HeaderStyle>
-        <Brand>Quick Draw!</Brand>
-        <Info>
-          <h2>Score: {score} </h2>
-          {/* TODO: add timer */}
-        </Info>
-      </HeaderStyle>
+      <StyledHeader>
+        <Content>
+          <Title>Quick Draw!</Title>
+          <Info>
+            <Heading4>Score: {score}</Heading4>
+            <Heading4>Time: {time}</Heading4>
+          </Info>
+        </Content>
+      </StyledHeader>
     );
   }
 }
