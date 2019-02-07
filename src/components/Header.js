@@ -6,15 +6,9 @@ const StyledHeader = styled.header`
   width: 100%;
   padding: 2rem;
   background: ${props => props.theme.colors['oak-3']};
-  box-shadow: var(--shadow);
+  box-shadow: 0.5rem 0.5rem 2rem rgba(0, 0, 0, 0.4);
   display: flex;
   justify-content: center;
-
-  @media screen and (min-width: 40em) {
-    grid-template-columns: 1fr 1fr;
-    grid-column-gap: 8rem;
-    grid-template-rows: 1fr;
-  }
 `;
 
 const Content = styled.div`
@@ -23,6 +17,12 @@ const Content = styled.div`
   grid-template-columns: auto;
   grid-template-rows: repeat(auto-fit, 1fr);
   align-items: center;
+
+  @media screen and (min-width: 640px) {
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 8rem;
+    grid-template-rows: 1fr;
+  }
 `;
 
 const Title = styled.h1`
