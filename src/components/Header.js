@@ -40,10 +40,12 @@ class Header extends Component {
       <StyledHeader>
         <Content>
           <Title>Quick Draw!</Title>
-          <Info>
-            <Heading4>Score: {score}</Heading4>
-            <Heading4>Time: {time}</Heading4>
-          </Info>
+          {isStartGame && (
+            <Info>
+              <Heading4>Score: {score}</Heading4>
+              <Heading4>Time: {time}</Heading4>
+            </Info>
+          )}
         </Content>
       </StyledHeader>
     );
