@@ -8,7 +8,7 @@ import { Heading4 } from './Font';
 // have two button styles: "bar" and "icon"
 
 const StyledButton = styled.button`
-  height: 8rem;
+  height: 100%;
   width: 100%;
   border: none;
   background: ${props => props.theme.colors['oak-3']};
