@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Title, Heading4 } from './Font';
 import styled from 'styled-components';
 import woodTexture from '../assets/wood-texture.svg';
 
@@ -25,23 +26,11 @@ const Content = styled.div`
   }
 `;
 
-const Title = styled.h1`
-  font-size: 4rem;
-  font-weight: 500;
-  font-family: ${props => props.theme.fontFamily['title']};
-  text-align: center;
-`;
-
 const Info = styled.div`
   justify-self: center;
   display: grid;
   grid-template-columns: auto auto;
   grid-column-gap: 2rem;
-`;
-
-const Heading4 = styled.h4`
-  font-size: 2.4rem;
-  font-family: ${props => props.theme.fontFamily['head']};
 `;
 
 class Header extends Component {
