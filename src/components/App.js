@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { ThemeProvider } from 'styled-components';
+
+import theme from '../themes/theme';
 
 import StartGame from './StartGame';
 import GameOver from './GameOver';
@@ -102,23 +105,25 @@ class App extends Component {
     const { score, gunmanState, startGame, gameOver, message } = this.state;
 
     return (
-      <Layout onKeyPress={this.checkSpaceKey}>
-        {startGame && <StartGame handleClick={this.newGame} />}
-        {gameOver && (
-          <GameOver
-            handleClick={this.newGame}
-            message={message}
-            score={score}
+      <ThemeProvider theme={theme}>
+        <Layout onKeyPress={this.checkSpaceKey}>
+          {startGame && <StartGame handleClick={this.newGame} />}
+          {gameOver && (
+            <GameOver
+              handleClick={this.newGame}
+              message={message}
+              score={score}
+            />
+          )}
+          <Header score={score} />
+          <h1>{message}</h1>
+          <Gunman
+            state={gunmanState}
+            handleScore={this.updateScore}
+            handleKey={this.checkSpaceKey}
           />
-        )}
-        <Header score={score} />
-        <h1>{message}</h1>
-        <Gunman
-          state={gunmanState}
-          handleScore={this.updateScore}
-          handleKey={this.checkSpaceKey}
-        />
-      </Layout>
+        </Layout>
+      </ThemeProvider>
     );
   }
 }
