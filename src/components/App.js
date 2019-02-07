@@ -121,6 +121,8 @@ class App extends Component {
             isStartGame={isStartGame}
             isGameOver={isGameOver}
           />
+          <Main />
+          <Footer />
         </Layout>
       </ThemeProvider>
     );
