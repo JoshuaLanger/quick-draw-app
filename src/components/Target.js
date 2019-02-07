@@ -18,7 +18,8 @@ const StyledTarget = styled.div`
 
 class Target extends Component {
   render() {
-    return <StyledTarget onMouseDown={props.handleScore} />;
+    const { state, handleScore } = this.props;
+    return <StyledTarget onMouseDown={handleScore} />;
   }
 }
 
