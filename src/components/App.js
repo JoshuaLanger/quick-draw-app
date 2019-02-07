@@ -128,13 +128,13 @@ class App extends Component {
             isStartGame={isStartGame}
             isGameOver={isGameOver}
           />
-          <Main 
+          <Main
             state={targetState}
             isStartGame={isStartGame}
             isGameOver={isGameOver}
             message={message}
           />
-          <Footer />
+          <Footer message={message} />
         </Layout>
       </ThemeProvider>
     );
