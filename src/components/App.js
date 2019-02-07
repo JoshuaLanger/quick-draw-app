@@ -13,22 +13,22 @@ let gunmanReadyFlag;
 let initialState = {
   score: 0,
   time: 0,
-  gunmanState: 'idle', // "idle", "ready", or "shot"
-  startGame: true,
-  gameOver: false,
+  targetState: 'idle', // "idle", "ready", or "shot"
+  isStartGame: true,
+  isGameOver: false,
   message: 'Ready...' // "Ready...", "Fire!", "Nice shot!", "You were shot!"
 };
 
-  // Styled Components
-  const Layout = styled.div`
-    height: 100vh;
-    background-color: ${props => props.theme.colors["oak-5"]};
-    color: ${props => props.theme.colors["oak-1"]};
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    overflow: hidden;
-  `;
+// Styled Components
+const Layout = styled.div`
+  height: 100vh;
+  background-color: ${props => props.theme.colors['oak-5']};
+  color: ${props => props.theme.colors['oak-1']};
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+`;
 
 class App extends Component {
   state = initialState;
@@ -110,7 +110,14 @@ class App extends Component {
   };
 
   render() {
-    const { score, time, targetState, isStartGame, isGameOver, message } = this.state;
+    const {
+      score,
+      time,
+      targetState,
+      isStartGame,
+      isGameOver,
+      message
+    } = this.state;
 
     return (
       <ThemeProvider theme={theme}>
