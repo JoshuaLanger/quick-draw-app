@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 
+import Button from './Button';
+
 class Footer extends Component {
   render() {
-    return <div>Howdy! I'm the footer!</div>;
+    return <Button message={"Howdy!"} />;
   }
 }
 
