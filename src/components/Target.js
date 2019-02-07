@@ -9,6 +9,7 @@ const StyledTarget = styled.div`
   background: ${props => props.theme.colors['blue']};
   transform: rotate(45deg);
   box-shadow: 0.5rem 0.5rem 2rem rgba(0, 0, 0, 0.4);
+  grid-area: target;
 
   @media (min-width: 40em) {
     width: 20rem;
