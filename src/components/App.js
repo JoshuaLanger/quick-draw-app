@@ -1,26 +1,34 @@
 import React, { Component } from 'react';
-import { ThemeProvider } from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 
 import theme from '../themes/theme';
 
-import StartGame from './StartGame';
-import GameOver from './GameOver';
 import Header from './Header';
-import Gunman from './Gunman';
-
-import Layout from '../styled-components/LayoutStyle';
-// import Button from '../styled-components/ButtonStyle';
+import Main from './Main';
+import Footer from './Footer';
 
 let roundFlag;
 let gunmanReadyFlag;
 
 let initialState = {
   score: 0,
+  time: 0,
   gunmanState: 'idle', // "idle", "ready", or "shot"
   startGame: true,
   gameOver: false,
   message: 'Ready...' // "Ready...", "Fire!", "Nice shot!", "You were shot!"
 };
+
+  // Styled Components
+  const Layout = styled.div`
+    height: 100vh;
+    background-color: ${props => props.theme.colors["oak-5"]};
+    color: ${props => props.theme.colors["oak-1"]};
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+  `;
 
 class App extends Component {
   state = initialState;
@@ -102,25 +110,16 @@ class App extends Component {
   };
 
   render() {
-    const { score, gunmanState, startGame, gameOver, message } = this.state;
+    const { score, time, targetState, isStartGame, isGameOver, message } = this.state;
 
     return (
       <ThemeProvider theme={theme}>
         <Layout onKeyPress={this.checkSpaceKey}>
-          {startGame && <StartGame handleClick={this.newGame} />}
-          {gameOver && (
-            <GameOver
-              handleClick={this.newGame}
-              message={message}
-              score={score}
-            />
-          )}
-          <Header score={score} />
-          <h1>{message}</h1>
-          <Gunman
-            state={gunmanState}
-            handleScore={this.updateScore}
-            handleKey={this.checkSpaceKey}
+          <Header
+            score={score}
+            time={time}
+            isStartGame={isStartGame}
+            isGameOver={isGameOver}
           />
         </Layout>
       </ThemeProvider>
