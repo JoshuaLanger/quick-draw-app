@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import woodTexture from '../assets/wood-texture.svg';
 
 import Target from './Target';
 import Button from './Button';
@@ -55,6 +56,19 @@ const ButtonColumn = styled.div`
   }
 `;
 
+const Icon = styled.button`
+  border: none;
+  width: 6.4rem;
+  height: 6.4rem;
+  background: ${props => props.theme.colors['oak-3']} url(${woodTexture});
+  box-shadow: ${props => props.theme.shadow['default']};
+  fill: ${props => props.theme.colors['oak-1']};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+`;
+
 class Main extends Component {
   render() {
     const { score, state, isStartGame, isGameOver, message } = this.props;
@@ -98,7 +112,17 @@ class Main extends Component {
               <Paragraph>Hit "START" to try again!</Paragraph>
             </DisplayScore>
             <ButtonColumn>
-              <Button type={'icon'} message={'R'} />
+              {/* SVG from https://iconmonstr.com/book-2-svg/*/}
+              <Icon>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="40"
+                  height="40"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M5.495 2h16.505v-2h-17c-1.657 0-3 1.343-3 3v18c0 1.657 1.343 3 3 3h17v-20h-16.505c-1.375 0-1.375-2 0-2zm.505 4h14v16h-14v-16z" />
+                </svg>
+              </Icon>
               <Paragraph>Read the rules again</Paragraph>
             </ButtonColumn>
           </>

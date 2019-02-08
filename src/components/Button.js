@@ -8,20 +8,10 @@ import { Heading4 } from './Font';
 // Have two button styles: "bar" and "icon"
 
 const StyledButton = styled.button`
-  height: ${props =>
-    props.type === 'bar'
-      ? props.theme.button.bar['height']
-      : props.theme.button.icon['height']};
-  width: ${props =>
-    props.type === 'bar'
-      ? props.theme.button.bar['width']
-      : props.theme.button.icon['width']};
+  height: 100%;
+  width: 100%;
   border: none;
-  background-color: ${props => props.theme.colors['oak-3']};
-  background-image: ${props =>
-    props.type === 'bar'
-      ? props.theme.button.bar['backgroundImage']
-      : props.theme.button.icon['backgroundImage']}, url(${woodTexture});
+  background: ${props => props.theme.colors['oak-3']} url(${woodTexture});
   box-shadow: ${props => props.theme.shadow['default']};
   color: ${props =>
     props.theme.colors['oak-1']}; // Why not applied from Layout?
