@@ -7,7 +7,7 @@ const StyledHeader = styled.header`
   width: 100%;
   padding: 2rem;
   background: ${props => props.theme.colors['oak-3']};
-  box-shadow: 0.5rem 0.5rem 2rem rgba(0, 0, 0, 0.4);
+  box-shadow: ${props => props.theme.shadow['default']};
   display: flex;
   justify-content: center;
 `;

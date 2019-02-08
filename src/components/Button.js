@@ -8,12 +8,14 @@ import { Heading4 } from './Font';
 // have two button styles: "bar" and "icon"
 
 const StyledButton = styled.button`
-  height: 100%;
-  width: 100%;
+  height: ${props => props.theme.button.bar['height']};
+  width: ${props => props.theme.button.bar['width']};
   border: none;
   background-color: ${props => props.theme.colors['oak-3']};
-  background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3));
-  color: ${props => props.theme.colors['oak-1']}; // Why not applied from Layout?
+  background-image: ${props => props.theme.button.bar['backgroundImage']};
+  box-shadow: ${props => props.theme.shadow['default']}
+  color: ${props =>
+    props.theme.colors['oak-1']}; // Why not applied from Layout?
   text-align: center;
   cursor: pointer;
 `;
