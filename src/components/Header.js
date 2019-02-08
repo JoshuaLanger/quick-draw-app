@@ -6,7 +6,7 @@ import woodTexture from '../assets/wood-texture.svg';
 const StyledHeader = styled.header`
   width: 100%;
   padding: 2rem;
-  background: ${props => props.theme.colors['oak-3']};
+  background: ${props => props.theme.colors['oak-3']} url(${woodTexture});
   box-shadow: ${props => props.theme.shadow['default']};
   display: flex;
   justify-content: center;

@@ -12,7 +12,7 @@ const StyledButton = styled.button`
   width: ${props => props.theme.button.bar['width']};
   border: none;
   background-color: ${props => props.theme.colors['oak-3']};
-  background-image: ${props => props.theme.button.bar['backgroundImage']};
+  background-image: ${props => props.theme.button.bar['backgroundImage']}, url(${woodTexture});
   box-shadow: ${props => props.theme.shadow['default']}
   color: ${props =>
     props.theme.colors['oak-1']}; // Why not applied from Layout?
@@ -22,9 +22,9 @@ const StyledButton = styled.button`
 
 class Button extends Component {
   render() {
-    const { message } = this.props;
+    const { style, message } = this.props;
     return (
-      <StyledButton>
+      <StyledButton style={style}>
         <Heading4>{message}</Heading4>
       </StyledButton>
     );
@@ -36,7 +36,8 @@ Button.defaultProps = {
 };
 
 Button.propTypes = {
-  message: PropTypes.string
+  message: PropTypes.string,
+  style: PropTypes.string
 };
 
 export default Button;

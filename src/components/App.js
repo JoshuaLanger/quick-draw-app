@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 
 import theme from '../themes/theme';
+import diamondTexture from '../assets/diamond-texture.svg';
 
 import Header from './Header';
 import Main from './Main';
@@ -10,7 +11,7 @@ import Footer from './Footer';
 // Styled Components (must be outside App component)
 const Layout = styled.div`
   height: 100vh;
-  background-color: ${props => props.theme.colors['oak-5']};
+  background: ${props => props.theme.colors['oak-5']} url(${diamondTexture});
   color: ${props => props.theme.colors['oak-1']};
   display: flex;
   flex-direction: column;
@@ -80,7 +81,7 @@ class App extends Component {
       setTimeout(() => {
         this.setState(prevState => ({
           time: time
-        }))
+        }));
       }, 10);
     }
     // Execute 'targetFire' function if no response within 'time'
