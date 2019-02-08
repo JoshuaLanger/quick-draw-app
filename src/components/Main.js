@@ -6,6 +6,7 @@ import Target from './Target';
 import { Heading3 } from './Font';
 
 const MainContainer = styled.main`
+  background-color: orangered;
   max-width: 40rem;
   margin: 0 2rem;
   display: grid;

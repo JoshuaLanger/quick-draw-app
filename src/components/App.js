@@ -14,6 +14,7 @@ const Layout = styled.div`
   color: ${props => props.theme.colors['oak-1']};
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: space-between;
   overflow: hidden;
 `;
