@@ -5,14 +5,23 @@ import woodTexture from '../assets/wood-texture.svg';
 
 import { Heading4 } from './Font';
 
-// have two button styles: "bar" and "icon"
+// Have two button styles: "bar" and "icon"
 
 const StyledButton = styled.button`
-  height: ${props => props.theme.button.bar['height']};
-  width: ${props => props.theme.button.bar['width']};
+  height: ${props =>
+    props.type === 'bar'
+      ? props.theme.button.bar['height']
+      : props.theme.button.icon['height']};
+  width: ${props =>
+    props.type === 'bar'
+      ? props.theme.button.bar['width']
+      : props.theme.button.icon['width']};
   border: none;
   background-color: ${props => props.theme.colors['oak-3']};
-  background-image: ${props => props.theme.button.bar['backgroundImage']}, url(${woodTexture});
+  background-image: ${props =>
+    props.type === 'bar'
+      ? props.theme.button.bar['backgroundImage']
+      : props.theme.button.icon['backgroundImage']}, url(${woodTexture});
   box-shadow: ${props => props.theme.shadow['default']}
   color: ${props =>
     props.theme.colors['oak-1']}; // Why not applied from Layout?
@@ -22,9 +31,9 @@ const StyledButton = styled.button`
 
 class Button extends Component {
   render() {
-    const { style, message } = this.props;
+    const { type, message } = this.props;
     return (
-      <StyledButton style={style}>
+      <StyledButton type={type}>
         <Heading4>{message}</Heading4>
       </StyledButton>
     );
@@ -36,8 +45,8 @@ Button.defaultProps = {
 };
 
 Button.propTypes = {
-  message: PropTypes.string,
-  style: PropTypes.string
+  type: PropTypes.string,
+  message: PropTypes.string
 };
 
 export default Button;

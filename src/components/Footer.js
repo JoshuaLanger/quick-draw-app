@@ -10,9 +10,10 @@ const StyledFooter = styled.footer`
 
 class Footer extends Component {
   render() {
+    const {message} = this.props;
     return (
       <StyledFooter>
-        <Button />
+        <Button type={'bar'} message={message} />
       </StyledFooter>
     );
   }

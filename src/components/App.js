@@ -30,7 +30,7 @@ let initialState = {
   targetState: 'idle', // "idle", "ready", or "shot"
   isStartGame: false,
   isGameOver: true,
-  message: 'Ready...' // "Ready...", "Fire!", "Nice shot!", "You were shot!"
+  message: 'START' // "START", "Ready...", "Fire!", "Nice shot!", "You were shot!"
 };
 
 class App extends Component {
@@ -57,8 +57,8 @@ class App extends Component {
   newRound = () => {
     this.setState(prevState => ({
       time: 0,
-      isStartGame: false,
-      isGameOver: true,
+      isStartGame: true,
+      isGameOver: false,
       targetState: 'idle',
       message: 'Ready...'
     }));
