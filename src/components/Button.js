@@ -5,8 +5,6 @@ import woodTexture from '../assets/wood-texture.svg';
 
 import { Heading4 } from './Font';
 
-// Have two button styles: "bar" and "icon"
-
 const StyledButton = styled.button`
   height: 100%;
   width: 100%;
@@ -21,9 +19,9 @@ const StyledButton = styled.button`
 
 class Button extends Component {
   render() {
-    const { type, message } = this.props;
+    const { message, handleClick } = this.props;
     return (
-      <StyledButton type={type}>
+      <StyledButton onClick={handleClick}>
         <Heading4>{message}</Heading4>
       </StyledButton>
     );
@@ -35,8 +33,8 @@ Button.defaultProps = {
 };
 
 Button.propTypes = {
-  type: PropTypes.string,
-  message: PropTypes.string
+  message: PropTypes.string,
+  handleClick: PropTypes.func.isRequired,
 };
 
 export default Button;
