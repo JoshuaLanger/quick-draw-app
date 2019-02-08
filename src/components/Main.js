@@ -97,7 +97,7 @@ class Main extends Component {
             </Rules>
           </>
         )}
-        {!(isStartGame || isGameOver) && <Target />}
+        {!(isStartGame || isGameOver) && <Target state={state}/>}
         {isGameOver && (
           <>
             {/* Only displays before the game */}

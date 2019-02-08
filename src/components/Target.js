@@ -6,7 +6,7 @@ const StyledTarget = styled.div`
   margin: 0 auto;
   height: 16rem;
   width: 16rem;
-  background: ${props => props.theme.colors['blue']};
+  background: ${props => props.theme.colors[props.color]};
   transform: rotate(45deg);
   box-shadow: ${props => props.theme.shadow['target']};
   grid-area: target;
@@ -19,14 +19,28 @@ const StyledTarget = styled.div`
 
 class Target extends Component {
   render() {
-    const { state, handleScore } = this.props;
-    return <StyledTarget onMouseDown={handleScore} />;
+    const { state } = this.props;
+
+    let color;
+    switch (state) {
+      case 'idle':
+        color = "blue";
+        break;
+      case 'ready':
+        color = "green";
+        break;
+      case 'shot':
+        color = "red";
+        break;
+      default:
+        color = "oak-3";
+    };
+    return <StyledTarget color={color}/>;
   }
 }
 
 Target.propTypes = {
-  state: PropTypes.string.isRequired,
-  handleScore: PropTypes.func.isRequired
+  state: PropTypes.string.isRequired
 };
 
 export default Target;

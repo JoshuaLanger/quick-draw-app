@@ -29,7 +29,7 @@ let initialState = {
   time: 0,
   targetState: 'idle', // "idle", "ready", or "shot"
   isStartGame: false,
-  isGameOver: true,
+  isGameOver: false,
   message: 'START' // "START", "Ready...", "Fire!", "Nice shot!", "You were shot!"
 };
 
