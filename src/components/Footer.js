@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 import Button from './Button';
 
@@ -18,5 +19,10 @@ class Footer extends Component {
     );
   }
 }
+
+Footer.propTypes = {
+  message: PropTypes.string,
+  handleClick: PropTypes.func.isRequired,
+};
 
 export default Footer;

@@ -6,7 +6,7 @@ import woodTexture from '../assets/wood-texture.svg';
 import { Heading4 } from './Font';
 
 const StyledButton = styled.button`
-  height: 100%;
+  height: 8rem;
   width: 100%;
   border: none;
   background: ${props => props.theme.colors['oak-3']} url(${woodTexture});

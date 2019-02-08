@@ -6,7 +6,8 @@ import diamondTexture from '../assets/diamond-texture.svg';
 
 import Header from './Header';
 import Main from './Main';
-import Footer from './Footer';
+// import Footer from './Footer';
+import Button from './Button';
 
 // Styled Components (must be outside App component)
 const Layout = styled.div`
@@ -28,7 +29,7 @@ let initialState = {
   score: 0,
   time: 0,
   targetState: 'idle', // "idle", "ready", or "shot"
-  isStartGame: false,
+  isStartGame: true,
   isGameOver: false,
   message: 'START' // "START", "Ready...", "Fire!", "Nice shot!", "You were shot!"
 };
@@ -57,7 +58,7 @@ class App extends Component {
   newRound = () => {
     this.setState(prevState => ({
       time: 0,
-      isStartGame: true,
+      isStartGame: false,
       isGameOver: false,
       targetState: 'idle',
       message: 'Ready...'
@@ -149,7 +150,11 @@ class App extends Component {
             isGameOver={isGameOver}
             message={message}
           />
-          <Footer message={message} />
+          {(isStartGame || isGameOver) ? (
+            <Button message={'START'} handleClick={this.newGame} />
+          ) : (
+            <Button message={message} handleClick={this.updateScore} />
+          )}
         </Layout>
       </ThemeProvider>
     );

@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import woodTexture from '../assets/wood-texture.svg';
 
 import Target from './Target';
-import Button from './Button';
 import { Heading3, Paragraph } from './Font';
 
 const MainContainer = styled.main`
