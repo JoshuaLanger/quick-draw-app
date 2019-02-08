@@ -50,9 +50,8 @@ class App extends Component {
       this.updateScore();
   };
 
-  newGame = () => {
+  startGame = () => {
     this.setState(prevState => initialState);
-    this.newRound();
   };
 
   newRound = () => {
@@ -149,9 +148,10 @@ class App extends Component {
             isStartGame={isStartGame}
             isGameOver={isGameOver}
             message={message}
+            handleClick={this.startGame}
           />
-          {(isStartGame || isGameOver) ? (
-            <Button message={'START'} handleClick={this.newGame} />
+          {isStartGame || isGameOver ? (
+            <Button message={'START'} handleClick={this.newRound} />
           ) : (
             <Button message={message} handleClick={this.updateScore} />
           )}

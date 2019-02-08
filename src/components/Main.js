@@ -70,7 +70,7 @@ const Icon = styled.button`
 
 class Main extends Component {
   render() {
-    const { score, state, isStartGame, isGameOver, message } = this.props;
+    const { score, state, isStartGame, isGameOver, message, handleClick} = this.props;
     return (
       <MainContainer>
         {isStartGame && (
@@ -112,7 +112,7 @@ class Main extends Component {
             </DisplayScore>
             <ButtonColumn>
               {/* SVG from https://iconmonstr.com/book-2-svg/*/}
-              <Icon>
+              <Icon onClick={handleClick}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="40"
@@ -136,7 +136,8 @@ Main.propTypes = {
   state: PropTypes.string,
   isStartGame: PropTypes.bool,
   isGameOver: PropTypes.bool,
-  message: PropTypes.string
+  message: PropTypes.string,
+  handleClick: PropTypes.func.isRequired,
 };
 
 export default Main;
