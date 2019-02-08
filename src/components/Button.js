@@ -22,7 +22,7 @@ const StyledButton = styled.button`
     props.type === 'bar'
       ? props.theme.button.bar['backgroundImage']
       : props.theme.button.icon['backgroundImage']}, url(${woodTexture});
-  box-shadow: ${props => props.theme.shadow['default']}
+  box-shadow: ${props => props.theme.shadow['default']};
   color: ${props =>
     props.theme.colors['oak-1']}; // Why not applied from Layout?
   text-align: center;

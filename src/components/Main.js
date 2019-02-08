@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import Target from './Target';
+import Button from './Button';
 import { Heading3, Paragraph } from './Font';
 
 const MainContainer = styled.main`
@@ -15,7 +16,7 @@ const MainContainer = styled.main`
   grid-template-areas:
     'heading heading heading'
     '. target .'
-    '. . .';
+    '. buttons .';
 `;
 
 const MainHeading = styled.span`
@@ -37,7 +38,21 @@ const DisplayScore = styled.div`
 
 const BigAssScore = styled.span`
   font-size: 6rem;
+  line-height: 1.6;
   font-family: ${props => props.theme.fontFamily['title']};
+`;
+
+const ButtonColumn = styled.div`
+  padding: 1rem 0;
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  grid-column-gap: 1.6rem;
+  align-items: center;
+
+  @media screen and (min-width: 40rem) {
+    grid-area: buttons;
+  }
 `;
 
 class Main extends Component {
@@ -82,6 +97,10 @@ class Main extends Component {
               <BigAssScore>{score}</BigAssScore>
               <Paragraph>Hit "START" to try again!</Paragraph>
             </DisplayScore>
+            <ButtonColumn>
+              <Button type={'icon'} message={'R'} />
+              <Paragraph>Read the rules again</Paragraph>
+            </ButtonColumn>
           </>
         )}
       </MainContainer>
