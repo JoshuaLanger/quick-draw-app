@@ -7,19 +7,7 @@ import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
 
-let roundFlag;
-let gunmanReadyFlag;
-
-let initialState = {
-  score: 0,
-  time: 0,
-  targetState: 'idle', // "idle", "ready", or "shot"
-  isStartGame: true,
-  isGameOver: false,
-  message: 'Ready...' // "Ready...", "Fire!", "Nice shot!", "You were shot!"
-};
-
-// Styled Components
+// Styled Components (must be outside App component)
 const Layout = styled.div`
   height: 100vh;
   background-color: ${props => props.theme.colors['oak-5']};
@@ -30,13 +18,21 @@ const Layout = styled.div`
   overflow: hidden;
 `;
 
+// Define flags for timeout functions
+let roundFlag;
+let targetReadyFlag;
+
+let initialState = {
+  score: 0,
+  time: 0,
+  targetState: 'idle', // "idle", "ready", or "shot"
+  isStartGame: true,
+  isGameOver: false,
+  message: 'Ready...' // "Ready...", "Fire!", "Nice shot!", "You were shot!"
+};
+
 class App extends Component {
   state = initialState;
-
-  newGame = () => {
-    this.setState(prevState => initialState);
-    this.newRound();
-  };
 
   componentDidMount() {
     document.addEventListener('keydown', this.checkSpaceKey, false);
@@ -47,60 +43,76 @@ class App extends Component {
   }
 
   checkSpaceKey = e => {
-    if (!this.state.startGame && !this.state.gameOver && e.keyCode === 32)
+    if (!this.state.isStartGame && !this.state.isGameOver && e.keyCode === 32)
       this.updateScore();
+  };
+
+  newGame = () => {
+    this.setState(prevState => initialState);
+    this.newRound();
   };
 
   newRound = () => {
     this.setState(prevState => ({
-      startGame: false,
-      gameOver: false,
-      gunmanState: 'idle',
+      time: 0,
+      isStartGame: false,
+      isGameOver: false,
+      targetState: 'idle',
       message: 'Ready...'
     }));
     // Randomize time between 5 seconds and now
     let time = Math.random() * 5000;
-    roundFlag = setTimeout(this.gunmanReady, time);
+    roundFlag = setTimeout(this.targetReady, time);
   };
 
-  gunmanReady = () => {
+  targetReady = () => {
     clearTimeout(roundFlag);
     this.setState(prevState => ({
-      gunmanState: 'ready',
+      targetState: 'ready',
       message: 'Fire!'
     }));
     // Inverse function
     // The higher the score, the less time you have to shoot
     let time = 6000 / (this.state.score + 1);
-    gunmanReadyFlag = setTimeout(this.gunmanFire, time);
+    // Update state.time with this time every 10 ms while target is 'ready'
+    while (this.state.targetState === 'ready') {
+      setTimeout(() => {
+        this.setState(prevState => ({
+          time: time
+        }))
+      }, 10);
+    }
+    // Execute 'targetFire' function if no response within 'time'
+    targetReadyFlag = setTimeout(this.targetFire, time);
   };
 
-  gunmanFire = () => {
-    clearTimeout(gunmanReadyFlag);
+  targetFire = () => {
+    clearTimeout(targetReadyFlag);
     this.setState(prevState => ({
-      gunmanState: 'idle',
-      gameOver: true,
+      targetState: 'idle',
+      isGameOver: true,
       message: "You've been shot! Game over"
     }));
   };
 
   updateScore = () => {
-    switch (this.state.gunmanState) {
+    switch (this.state.targetState) {
       case 'idle':
-        clearTimeout(gunmanReadyFlag);
+        clearTimeout(targetReadyFlag);
         clearTimeout(roundFlag);
         this.setState(prevState => ({
           message: 'Ya shot too soon pardner! Game over',
-          gameOver: true
+          isGameOver: true
         }));
         break;
       case 'ready':
-        clearTimeout(gunmanReadyFlag);
+        clearTimeout(targetReadyFlag);
         this.setState(prevState => ({
           score: prevState.score + 1,
-          gunmanState: 'shot',
+          targetState: 'shot',
           message: 'Nice shot!'
         }));
+        // Set new round after 3 seconds
         setTimeout(this.newRound, 3000);
         break;
       case 'shot':
