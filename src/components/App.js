@@ -77,13 +77,13 @@ class App extends Component {
     // The higher the score, the less time you have to shoot
     let time = 6000 / (this.state.score + 1);
     // Update state.time with this time every 10 ms while target is 'ready'
-    while (this.state.targetState === 'ready') {
-      setTimeout(() => {
-        this.setState(prevState => ({
-          time: time
-        }));
-      }, 10);
-    }
+    // while (this.state.targetState === 'ready') {
+    //   setTimeout(() => {
+    //     this.setState(prevState => ({
+    //       time: time
+    //     }));
+    //   }, 10);
+    // }
     // Execute 'targetFire' function if no response within 'time'
     targetReadyFlag = setTimeout(this.targetFire, time);
   };
