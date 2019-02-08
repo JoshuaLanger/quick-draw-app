@@ -27,8 +27,8 @@ let initialState = {
   score: 0,
   time: 0,
   targetState: 'idle', // "idle", "ready", or "shot"
-  isStartGame: true,
-  isGameOver: false,
+  isStartGame: false,
+  isGameOver: true,
   message: 'Ready...' // "Ready...", "Fire!", "Nice shot!", "You were shot!"
 };
 
@@ -57,7 +57,7 @@ class App extends Component {
     this.setState(prevState => ({
       time: 0,
       isStartGame: false,
-      isGameOver: false,
+      isGameOver: true,
       targetState: 'idle',
       message: 'Ready...'
     }));
@@ -142,6 +142,7 @@ class App extends Component {
             isGameOver={isGameOver}
           />
           <Main
+            score={score}
             state={targetState}
             isStartGame={isStartGame}
             isGameOver={isGameOver}

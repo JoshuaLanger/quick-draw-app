@@ -29,13 +29,25 @@ const Rules = styled.div`
   text-align: left;
 `;
 
+const DisplayScore = styled.div`
+  grid-column: 1 / -1;
+  grid-row: 2 / -2;
+  text-align: center;
+`;
+
+const BigAssScore = styled.span`
+  font-size: 6rem;
+  font-family: ${props => props.theme.fontFamily['title']};
+`;
+
 class Main extends Component {
   render() {
-    const { state, isStartGame, isGameOver, message } = this.props;
+    const { score, state, isStartGame, isGameOver, message } = this.props;
     return (
       <MainContainer>
         {isStartGame && (
           <>
+            {/* Only displays before the game */}
             <MainHeading>
               <Heading3>Get ready to draw!</Heading3>
             </MainHeading>
@@ -56,13 +68,29 @@ class Main extends Component {
             </Rules>
           </>
         )}
-        {false && <Target />}
+        {!(isStartGame || isGameOver) && <Target />}
+        {isGameOver && (
+          <>
+            {/* Only displays before the game */}
+            <MainHeading>
+              <Heading3>Game Over!</Heading3>
+            </MainHeading>
+            <DisplayScore>
+              <Paragraph>
+                Well shoot, looks like you lost. Your final tally was
+              </Paragraph>
+              <BigAssScore>{score}</BigAssScore>
+              <Paragraph>Hit "START" to try again!</Paragraph>
+            </DisplayScore>
+          </>
+        )}
       </MainContainer>
     );
   }
 }
 
 Main.propTypes = {
+  score: PropTypes.number,
   state: PropTypes.string,
   isStartGame: PropTypes.bool,
   isGameOver: PropTypes.bool,
