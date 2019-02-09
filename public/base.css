@@ -27,9 +27,11 @@ html {
 @keyframes moveUp {
   from {
     transform: translateY(100%);
+    display: none;
   }
   to {
     transform: translateY(0);
+    display: inline-block;
   }
 }
 .moveUp {

@@ -16,6 +16,11 @@ const StyledButton = styled.button`
     props.theme.colors['oak-1']}; // Why not applied from Layout?
   text-align: center;
   cursor: pointer;
+
+  &:focus {
+    outline: none;
+    border: 2px solid ${props => props.theme.colors['oak-2']};
+  }
 `;
 
 class Button extends Component {
