@@ -6,7 +6,6 @@ import diamondTexture from '../assets/diamond-texture.svg';
 
 import Header from './Header';
 import Main from './Main';
-// import Footer from './Footer';
 import Button from './Button';
 
 // Styled Components (must be outside App component)
@@ -37,21 +36,13 @@ let initialState = {
 class App extends Component {
   state = initialState;
 
-  componentDidMount() {
-    document.addEventListener('keydown', this.checkSpaceKey, false);
-  }
-
-  componentWillUnmount() {
-    document.removeEventListener('keydown', this.checkSpaceKey, false);
-  }
-
-  checkSpaceKey = e => {
-    if (!this.state.isStartGame && !this.state.isGameOver && e.keyCode === 32)
-      this.updateScore();
-  };
-
   startGame = () => {
     this.setState(prevState => initialState);
+  };
+
+  newGame = () => {
+    this.setState(prevState => initialState);
+    this.newRound();
   };
 
   newRound = () => {
@@ -135,7 +126,7 @@ class App extends Component {
 
     return (
       <ThemeProvider theme={theme}>
-        <Layout onKeyPress={this.checkSpaceKey}>
+        <Layout>
           <Header
             score={score}
             time={time}
@@ -151,7 +142,7 @@ class App extends Component {
             handleClick={this.startGame}
           />
           {isStartGame || isGameOver ? (
-            <Button message={'START'} handleClick={this.newRound} />
+            <Button message={'START'} handleClick={this.newGame} />
           ) : (
             <Button message={message} handleClick={this.updateScore} />
           )}
