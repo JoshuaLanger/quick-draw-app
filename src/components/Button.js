@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import woodTexture from '../assets/wood-texture.svg';
 
 import { Heading4 } from './Font';
@@ -19,9 +20,15 @@ const StyledButton = styled.button`
 
 class Button extends Component {
   render() {
-    const { message, handleClick } = this.props;
+    const { message, isGameOver, handleClick } = this.props;
+
+    // moveUp is currently defined in base.css
+    let animClass = classNames({
+      moveUp: isGameOver
+    });
+
     return (
-      <StyledButton onClick={handleClick}>
+      <StyledButton className={animClass} onClick={handleClick}>
         <Heading4>{message}</Heading4>
       </StyledButton>
     );
@@ -34,7 +41,7 @@ Button.defaultProps = {
 
 Button.propTypes = {
   message: PropTypes.string,
-  handleClick: PropTypes.func.isRequired,
+  handleClick: PropTypes.func.isRequired
 };
 
 export default Button;

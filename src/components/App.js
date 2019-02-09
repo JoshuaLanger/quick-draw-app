@@ -147,7 +147,11 @@ class App extends Component {
             handleClick={this.startGame}
           />
           {isStartGame || isGameOver ? (
-            <Button message={'START'} handleClick={this.newGame} />
+            <Button
+              message={'START'}
+              isGameOver={isGameOver}
+              handleClick={this.newGame}
+            />
           ) : (
             <Button message={message} handleClick={this.updateScore} />
           )}
