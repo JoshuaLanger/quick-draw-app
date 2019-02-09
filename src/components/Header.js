@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Title, Heading4 } from './Font';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import woodTexture from '../assets/wood-texture.svg';
 
 const StyledHeader = styled.header`
@@ -27,10 +28,15 @@ const Content = styled.div`
 `;
 
 const Info = styled.div`
-  justify-self: center;
+  justify-self: left;
+  margin-left: 1.6rem;
   display: grid;
   grid-template-columns: auto auto;
   grid-column-gap: 2rem;
+
+  @media screen and (min-width: 640px) {
+    margin-left: 0rem;
+  }
 `;
 
 class Header extends Component {
@@ -52,5 +58,12 @@ class Header extends Component {
     );
   }
 }
+
+Header.propTypes = {
+  score: PropTypes.number,
+  time: PropTypes.string, // The toFixed method had been applied, rendering this prop a string
+  isStartGame: PropTypes.bool,
+  isGameOver: PropTypes.bool
+};
 
 export default Header;

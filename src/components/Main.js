@@ -70,7 +70,14 @@ const Icon = styled.button`
 
 class Main extends Component {
   render() {
-    const { score, state, isStartGame, isGameOver, message, handleClick} = this.props;
+    const {
+      score,
+      state,
+      isStartGame,
+      isGameOver,
+      message,
+      handleClick
+    } = this.props;
     return (
       <MainContainer>
         {isStartGame && (
@@ -96,7 +103,7 @@ class Main extends Component {
             </Rules>
           </>
         )}
-        {!(isStartGame || isGameOver) && <Target state={state}/>}
+        {!(isStartGame || isGameOver) && <Target state={state} />}
         {isGameOver && (
           <>
             {/* Only displays before the game */}
@@ -104,9 +111,7 @@ class Main extends Component {
               <Heading3>Game Over!</Heading3>
             </MainHeading>
             <DisplayScore>
-              <Paragraph>
-                Well shoot, looks like you lost. Your final tally was
-              </Paragraph>
+              <Paragraph>{message} Your final tally was</Paragraph>
               <BigAssScore>{score}</BigAssScore>
               <Paragraph>Hit "START" to try again!</Paragraph>
             </DisplayScore>
@@ -137,7 +142,7 @@ Main.propTypes = {
   isStartGame: PropTypes.bool,
   isGameOver: PropTypes.bool,
   message: PropTypes.string,
-  handleClick: PropTypes.func.isRequired,
+  handleClick: PropTypes.func.isRequired
 };
 
 export default Main;

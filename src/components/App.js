@@ -23,10 +23,11 @@ const Layout = styled.div`
 // Define flags for timeout functions
 let roundFlag;
 let targetReadyFlag;
+let timeCounter;
 
 let initialState = {
   score: 0,
-  time: 0,
+  time: (0).toFixed(2), // renders as a string
   targetState: 'idle', // "idle", "ready", or "shot"
   isStartGame: true,
   isGameOver: false,
@@ -47,7 +48,7 @@ class App extends Component {
 
   newRound = () => {
     this.setState(prevState => ({
-      time: 0,
+      time: (0).toFixed(2),
       isStartGame: false,
       isGameOver: false,
       targetState: 'idle',
@@ -66,21 +67,24 @@ class App extends Component {
     }));
     // Inverse function
     // The higher the score, the less time you have to shoot
-    let time = 6000 / (this.state.score + 1);
+    let msTime = (6000 / (this.state.score + 1)).toFixed(2);
+    this.setState(prevState => ({
+      time: (msTime / 1000).toFixed(2)
+    }));
     // Update state.time with this time every 10 ms while target is 'ready'
-    // while (this.state.targetState === 'ready') {
-    //   setTimeout(() => {
-    //     this.setState(prevState => ({
-    //       time: time
-    //     }));
-    //   }, 10);
-    // }
+    timeCounter = setInterval(() => {
+      msTime -= 10;
+      this.setState(prevState => ({
+        time: (msTime / 1000).toFixed(2)
+      }));
+    }, 10);
     // Execute 'targetFire' function if no response within 'time'
-    targetReadyFlag = setTimeout(this.targetFire, time);
+    targetReadyFlag = setTimeout(this.targetFire, msTime);
   };
 
   targetFire = () => {
     clearTimeout(targetReadyFlag);
+    clearInterval(timeCounter);
     this.setState(prevState => ({
       targetState: 'idle',
       isGameOver: true,
@@ -89,6 +93,7 @@ class App extends Component {
   };
 
   updateScore = () => {
+    clearInterval(timeCounter);
     switch (this.state.targetState) {
       case 'idle':
         clearTimeout(targetReadyFlag);
