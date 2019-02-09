@@ -84,7 +84,7 @@ class App extends Component {
     this.setState(prevState => ({
       targetState: 'idle',
       isGameOver: true,
-      message: "You've been shot! Game over"
+      message: 'Well shoot, looks like you lost.'
     }));
   };
 
@@ -94,7 +94,7 @@ class App extends Component {
         clearTimeout(targetReadyFlag);
         clearTimeout(roundFlag);
         this.setState(prevState => ({
-          message: 'Ya shot too soon pardner! Game over',
+          message: 'Ya shot too soon, pardner!',
           isGameOver: true
         }));
         break;

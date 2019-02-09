@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import classNames from 'classnames';
 
 const StyledTarget = styled.div`
   margin: 0 auto;
@@ -21,21 +22,26 @@ class Target extends Component {
   render() {
     const { state } = this.props;
 
+    let animClass = classNames({
+      spin: state === 'shot'
+    });
+
     let color;
     switch (state) {
       case 'idle':
-        color = "blue";
+        color = 'blue';
         break;
       case 'ready':
-        color = "green";
+        color = 'green';
         break;
       case 'shot':
-        color = "red";
+        color = 'red';
         break;
       default:
-        color = "oak-3";
-    };
-    return <StyledTarget color={color}/>;
+        color = 'oak-3';
+    }
+
+    return <StyledTarget className={animClass} color={color} />;
   }
 }
 
